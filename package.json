@@ -1,0 +1,28 @@
+{
+  "name": "linkfuture-pg-api",
+  "version": "0.0.2",
+  "description": "RESTful API for PostgreSQL",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyokin/pg-api.git"
+  },
+  "keywords": [
+    "PostgreSQL",
+    "RESTful",
+    "JSON"
+  ],
+  "author": {
+    "name": "Cyokin Zhang",
+    "email": "half_6@hotmail.com",
+    "url": "http://cyokin.wordpress.com/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cyokin/pg-api/issues"
+  },
+  "homepage": "https://github.com/cyokin/pg-api#readme"
+}
