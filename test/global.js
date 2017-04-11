@@ -28,7 +28,7 @@ global.$serverErrorVerify=(err,res)=>{
 };
 global.$error= function (name,done) {
     return function (err) {
-        $logger.error(name,err);
+        $logger.info(name,err);
         done();
     }
 }

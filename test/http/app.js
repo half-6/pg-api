@@ -9,5 +9,4 @@ const $www = require("./www");
 const $pgApi = require("./../../lib/pg/pg-api")(global.$config.pg.connection);
 
 $app.use("/api/db/",$pgApi);
-$www($app);
 module.exports =$app;
