@@ -11,9 +11,14 @@
     "url": "git+https://github.com/cyokin/pg-api.git"
   },
   "keywords": [
-    "PostgreSQL",
-    "RESTful",
-    "JSON"
+    "postgres",
+    "postgre",
+    "postgresql",
+    "pg",
+    "database",
+    "restful",
+    "api",
+    "json"
   ],
   "author": {
     "name": "Cyokin Zhang",
@@ -34,5 +39,8 @@
     "chai-http": "*",
     "mocha": "*",
     "mochawesome": "*"
+  },
+  "engines": {
+    "node": ">= 7.0.0"
   }
 }
