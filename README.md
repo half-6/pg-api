@@ -4,7 +4,7 @@
 
 RESTful API for PostgreSQL
 
-## Installation
+>## Installation
 
 The easiest way to install acorn is with [`npm`][npm].
 
@@ -15,24 +15,25 @@ npm install linkfuture-pg-api
 ```
 
 
-## Usage
+>## Usage
 
 ```js
-const $pgApi = require("./pg/pg-api")($config.config.pg.connection);
+const $pgApi = require("linkfuture-pg-api")($config.pg.connection);
 app.use("/api/db/",$pgApi);
 ```
 
-## Query
+>## Query
 
-### SELECT 
-- HTTP GET
+### SELECT (GET)
+- Select by ID
 ``` curl
 http://[host]/api/db/[table name]/[id]
+http://[host]/api/db/user/1
 ```
-- JSON Query
+- Select by JSON Query
 ``` curl
 http://[host]/api/db/[table name]?$q=[JSON QUERY]
-http://[host]/api/db/[table name]?$q={"$where":{"id":{"$any":[1,2,3]}}}
+http://[host]/api/db/user?$q={"$where":{"id":{"$any":[1,2,3]}}}
 ```
 - JSON Query example
 ``` js
@@ -59,7 +60,17 @@ http://[host]/api/db/[table name]?$q={"$where":{"id":{"$any":[1,2,3]}}}
   ,"$offset":0
 }
 ```
-### KeyWords
+### INSERT (POST)
+TBD
+### UPDATE (PUT)
+TBD
+### PARTIALLY UPDATES (PATCH)
+TBD
+### DELETE (DELETE)
+TBD
+
+>## KeyWords
+- $q 
 - $or 
 - $where
 - $sort
