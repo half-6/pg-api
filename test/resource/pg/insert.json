@@ -1,0 +1,17 @@
+{
+  "account":"my_account_1"
+,"password":"my passowrd"
+,"display_name":"my display name"
+,"gender":"male"
+,"age":10
+,"price":50
+,"struct":{"name":"fuzzy1","supplier_id":[10,50],"price":1.99}
+,"roles":[3,4]
+,"meta":
+      {
+        "img":"https://scontent-ord1-1.xx.fbcdn.net/v/t1.0-1/c9.0.40.40/p40x40/1618502_10203352692842640_430525865_n.jpg?oh=10b7e45293509d2b667a27f21985891f&oe=582C74C9"
+        ,"gender":"male"
+        ,"languages":"english"
+      }
+  ,"date_registered":"2015-09-30 21:21:31.647-0700"
+}

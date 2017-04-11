@@ -1,0 +1,14 @@
+{
+  "display_name":"my display name"
+  ,"$or":[
+    {
+      "account":"my_account_1"
+    }
+    ,{
+      "account":"my_account_2"
+    }
+  ,{
+      "account":"my_account_3"
+    }
+  ]
+}

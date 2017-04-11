@@ -1,10 +1,10 @@
 {
   "name": "linkfuture-pg-api",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "RESTful API for PostgreSQL",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha ./test"
   },
   "repository": {
     "type": "git",
@@ -24,5 +24,15 @@
   "bugs": {
     "url": "https://github.com/cyokin/pg-api/issues"
   },
-  "homepage": "https://github.com/cyokin/pg-api#readme"
+  "homepage": "https://github.com/cyokin/pg-api#readme",
+  "dependencies": {
+    "pg-promise": "5.x",
+    "express": "~4.14.0"
+  },
+  "devDependencies": {
+    "chai": "*",
+    "chai-http": "*",
+    "mocha": "*",
+    "mochawesome": "*"
+  }
 }

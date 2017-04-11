@@ -1,0 +1,15 @@
+{
+  "display_name": "UNIT TEST",
+  "age":{"$gt":20},
+  "is_active":1,
+  "$or": [
+    {
+      "gender": "male"
+      ,"age": {"$lt":65}
+    },
+    {
+      "age": {"$lt":65},
+      "display_name": "UNIT TEST1"
+    }
+  ]
+}

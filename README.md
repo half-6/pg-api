@@ -14,7 +14,75 @@ npm install linkfuture-pg-api
 
 ## Usage
 
-```nodejs
+```js
 const $pgApi = require("./pg/pg-api")($config.config.pg.connection);
 app.use("/api/db/",$pgApi);
 ```
+
+## Query
+
+### SELECT 
+- HTTP GET
+``` curl
+http://[host]/api/db/[table name]/[id]
+```
+- JSON Query
+``` curl
+http://[host]/api/db/[table name]?$q=[JSON QUERY]
+http://[host]/api/db/[table name]?$q={"$where":{"id":{"$any":[1,2,3]}}}
+```
+- JSON Query example
+``` js
+{
+  "*":true
+  ,"unknown_field2": {"$multiply":["age","price","price"]}
+  ,"unknown_field3": {"$multiply":["age",{"$divide":["age","price"]}]}
+  ,"unknown_field4": {"$divide":["age","price"]}
+  ,"unknown_field5": {"$plus":["age","price"]}
+  ,"unknown_field6": {"$minus":["age","price"]}
+  ,"unknown_field7": {"$module":["age","price"]}
+  ,"$where":{
+      "display_name": "UNIT TEST",
+      "account": {"$similar":"account%"},
+      "age":{"$gt":5},
+      "is_active":1,
+      "roles":[1,2],
+      "price":{"$between":[300,500]},
+      "account_id":{"$any": [4,3]},
+      "meta":{"$contain":{"b":4}}
+  }
+  ,"$sort":{"data_registered":"DESC","account_id":"ASC"  }
+  ,"$limit":10
+  ,"$offset":0
+}
+```
+### KeyWords
+- $or 
+- $where
+- $sort
+- $limit
+- $offset
+- $group
+- $gt
+- $gte
+- $lt
+- $lte
+- $ne
+- $like
+- $similar
+- $contain
+- $any
+- $between
+- $in
+- $multiply
+- $divide
+- $plus
+- $minus
+- $module
+- $sum
+- $count
+- $min
+- $max
+- $avg
+
+ 
