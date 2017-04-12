@@ -3,11 +3,17 @@
 <span class="badge-npmdownloads"><a href="https://npmjs.org/package/linkfuture-pg-api" title="View this project on NPM"><img src="https://img.shields.io/npm/dm/linkfuture-pg-api.svg" alt="NPM downloads" /></a></span>
 
 RESTful API for PostgreSQL  
-<span style="color:gray; font-size: 10px;">A easier way to query DB through API directly</span>
+<span style="color:gray; font-size: 10px;">An easier way to query database</span>
 
->## Installation
+Table of Contents
+- Installation(#installation)
+- Usage(#usage)
+- Query(#Query)
+- KeyWords(#KeyWords)
 
-The easiest way to install acorn is with [`npm`][npm].
+## Installation
+
+The easiest way to install linkfuture-pg-api is with [`npm`][npm].
 
 [npm]: https://www.npmjs.com/
 
@@ -16,14 +22,14 @@ npm install linkfuture-pg-api
 ```
 
 
->## Usage
+## Usage
 
 ```js
 const $pgApi = require("linkfuture-pg-api")($config.pg.connection);
 app.use("/api/db/",$pgApi);
 ```
 
->## Query
+## Query
 
 ### SELECT (GET)
 - Select by ID
@@ -39,7 +45,7 @@ app.use("/api/db/",$pgApi);
 ``` 
 
 - JSON Query example
-``` JSON
+``` javascript
 {
   "*":true
   ,"unknown_field2": {"$multiply":["age","price","price"]}
@@ -79,7 +85,7 @@ TBD
 ### DELETE (DELETE)
 TBD
 
->## KeyWords
+## KeyWords
 - $q 
 - $or 
 - $where
