@@ -2,7 +2,8 @@
 <span class="badge-npmversion"><a href="https://npmjs.org/package/linkfuture-pg-api" title="View this project on NPM"><img src="https://img.shields.io/npm/v/linkfuture-pg-api.svg" alt="NPM version" /></a></span>
 <span class="badge-npmdownloads"><a href="https://npmjs.org/package/linkfuture-pg-api" title="View this project on NPM"><img src="https://img.shields.io/npm/dm/linkfuture-pg-api.svg" alt="NPM downloads" /></a></span>
 
-RESTful API for PostgreSQL
+RESTful API for PostgreSQL  
+<span style="color:gray; font-size: 10px;">A easier way to query DB through API directly</span>
 
 >## Installation
 
@@ -27,12 +28,12 @@ app.use("/api/db/",$pgApi);
 ### SELECT (GET)
 - Select by ID
 ``` curl
-http://[host]/api/db/[table name]/[id]
+http://[host]/api/db/[table name or view name]/[id]
 http://[host]/api/db/user/1
 ```
 - Select by JSON Query
 ``` curl
-http://[host]/api/db/[table name]?$q=[JSON QUERY]
+http://[host]/api/db/[table name or view name]?$q=[JSON QUERY]
 http://[host]/api/db/user?$q={"$where":{"id":{"$any":[1,2,3]}}}
 ```
 - JSON Query example
@@ -53,7 +54,11 @@ http://[host]/api/db/user?$q={"$where":{"id":{"$any":[1,2,3]}}}
       "roles":[1,2],
       "price":{"$between":[300,500]},
       "account_id":{"$any": [4,3]},
-      "meta":{"$contain":{"b":4}}
+      "meta":{"$contain":{"b":4}},
+      "$or":[
+          { "account":"test_1"},
+          { "account":"test_2"}
+       ]
   }
   ,"$sort":{"data_registered":"DESC","account_id":"ASC"  }
   ,"$limit":10
