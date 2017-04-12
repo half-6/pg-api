@@ -27,17 +27,19 @@ app.use("/api/db/",$pgApi);
 
 ### SELECT (GET)
 - Select by ID
-``` curl
-http://[host]/api/db/[table name or view name]/[id]
-http://[host]/api/db/user/1
-```
+``` HTTP
+    GET http://[host]/api/db/[table name or view name]/[id]
+    GET http://[host]/api/db/user/1
+``` 
+
 - Select by JSON Query
-``` curl
-http://[host]/api/db/[table name or view name]?$q=[JSON QUERY]
-http://[host]/api/db/user?$q={"$where":{"id":{"$any":[1,2,3]}}}
-```
+``` HTTP
+    GET http://[host]/api/db/[table name or view name]?$q=[JSON QUERY]
+    GET http://[host]/api/db/user?$q={"$where":{"id":{"$any":[1,2,3]}}}
+``` 
+
 - JSON Query example
-``` js
+``` JSON
 {
   "*":true
   ,"unknown_field2": {"$multiply":["age","price","price"]}
@@ -67,10 +69,13 @@ http://[host]/api/db/user?$q={"$where":{"id":{"$any":[1,2,3]}}}
 ```
 ### INSERT (POST)
 TBD
+
 ### UPDATE (PUT)
 TBD
+
 ### PARTIALLY UPDATES (PATCH)
 TBD
+
 ### DELETE (DELETE)
 TBD
 
