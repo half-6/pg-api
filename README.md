@@ -6,10 +6,10 @@ RESTful API for PostgreSQL
 <span style="color:gray; font-size: 10px;">An easier way to query database</span>
 
 Table of Contents
-- Installation(#installation)
-- Usage(#usage)
-- Query(#Query)
-- KeyWords(#KeyWords)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Query](#query)
+- [KeyWords](#keywords)
 
 ## Installation
 
@@ -21,7 +21,6 @@ The easiest way to install linkfuture-pg-api is with [`npm`][npm].
 npm install linkfuture-pg-api
 ```
 
-
 ## Usage
 
 ```js
@@ -32,19 +31,19 @@ app.use("/api/db/",$pgApi);
 ## Query
 
 ### SELECT (GET)
-- Select by ID
+- Select by Primary Key
 ``` HTTP
-    GET http://[host]/api/db/[table name or view name]/[id]
+    GET http://[host]/api/db/[table-name or view-name]/[id]
     GET http://[host]/api/db/user/1
 ``` 
 
 - Select by JSON Query
 ``` HTTP
-    GET http://[host]/api/db/[table name or view name]?$q=[JSON QUERY]
+    GET http://[host]/api/db/[table-name or view-name]?$q=[JSON QUERY]
     GET http://[host]/api/db/user?$q={"$where":{"id":{"$any":[1,2,3]}}}
 ``` 
 
-- JSON Query example
+- JSON Query Example
 ``` javascript
 {
   "*":true
