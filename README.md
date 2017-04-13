@@ -79,10 +79,25 @@ TBD
 TBD
 
 ### PARTIALLY UPDATES (PATCH)
-TBD
+- Update by JSON Query
+``` HTTP
+    PATCH http://[host]/api/db/[table-name]?$q=[JSON QUERY]
+    PATCH http://[host]/api/db/user?$q={"display_name":"new name","age":10,"$where":{"id":{"$any":[1,2,3]}}}
+``` 
 
 ### DELETE (DELETE)
-TBD
+- Delete by Primary Key
+``` HTTP
+    DELETE http://[host]/api/db/[table-name or view-name]/[id]
+    DELETE http://[host]/api/db/user/1
+``` 
+
+- Delete by JSON Query (no need [$where])
+``` HTTP
+    DELETE http://[host]/api/db/[table-name]?$q=[JSON QUERY]
+    DELETE http://[host]/api/db/user?$q={"id":{"$any":[1,2,3]}}
+``` 
+
 
 ## KeyWords
 - $q 
@@ -114,4 +129,12 @@ TBD
 - $max
 - $avg
 
+
+## Known issue
+- Struct  
+   JSON to struct don't support yet, you have to use string type for now.  
+   For example
+   - JSON not support: "struct":{"name":"full update","supplier_id":[10,50],"price":1.99} 
+   - Please use: "struct":"(\"fullsss12 update\",\"{10,50}\",1.99)"
+    
  

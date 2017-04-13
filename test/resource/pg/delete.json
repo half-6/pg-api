@@ -1,14 +1,8 @@
 {
-  "display_name":"my display name"
+  "name":"Qandahar"
   ,"$or":[
     {
-      "account":"my_account_1"
-    }
-    ,{
-      "account":"my_account_2"
-    }
-  ,{
-      "account":"my_account_3"
+      "countrycode":"AFG"
     }
   ]
 }

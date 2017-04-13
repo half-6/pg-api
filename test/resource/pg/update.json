@@ -1,37 +1,12 @@
 {
   "password":"my passowrd"
   ,"display_name":"my display_name"
-  ,"date_updated":"1469569426221"
+  ,"date_updated":"2016-08-31 07:55:28"
   ,"roles" :[3,2]
   ,"meta":{"img":"http://ww","new":1,"c":2}
-  ,"struct":{"name":"full update","supplier_id":[10,50],"price":1.99}
+  ,"struct":"(\"fullsss12 update\",\"{10,50}\",1.99)"
 ,"$where":{
       "account":"my_account_1"
      ,"data_registered":{"$gt":"2015-02-29 21:21:31.647-0700"}
   }
 }
-/*
-##ARRAY
-    "roles" :[3,2]
-
-##JSON
-  ###make sure jsonb_merge function has been created
-  overwrite or upsert json object
-  ,"meta":{"img":"http://ww","new":1,"c":2}
-  ,"meta":{"$upsert":{"img":"http://ww","new":1,"c":2}}
-
-##STRUCT
-  ,"struct.name":"fuzzy_update"
-  ,"struct.price":200
-  ,"struct":{"name":"full update","supplier_id":40,"price":1.99}
-
-##Date comparison
-    ### support date format
-    2015-09-30 21:21:31.647-0700 (yyyy-MM-dd HH:mm:ss.SSSZZZ)
-    2016/07/26T14:43:10.786Z (ISO8601)
-    1469569427221 (timestamp)
-
-    "date_updated":"2015-11-30 21:21:31.647-0700"
-    "date_updated":1469569426221
-    "date_updated":"1469569426221"
-*/
