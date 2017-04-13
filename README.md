@@ -74,7 +74,59 @@ app.use("/api/db/",$pgApi);
 }
 ```
 ### INSERT (POST)
-TBD
+- INSERT by JSON Query
+``` HTTP
+    POST http://[host]/api/db/[table-name]
+    POST http://[host]/api/db/user
+    {
+         "account":"my_account_1"
+        ,"password":"my passowrd"
+        ,"display_name":"my display name"
+        ,"gender":"male"
+        ,"date_registered":"2015-10-30 14:21:31.647424 -07:00:00"
+        ,"age":10
+        ,"price":50
+        ,"roles":[1,2]
+        ,"is_active":true
+        ,"struct":null
+        ,"meta":null
+      }
+``` 
+- BULK INSERT by JSON Query
+``` HTTP
+    POST http://[host]/api/db/[table-name]
+    POST http://[host]/api/db/user
+    [
+      {
+         "account":"my_account_1"
+        ,"password":"my passowrd"
+        ,"display_name":"my display name"
+        ,"gender":"male"
+        ,"date_registered":"2015-10-30 14:21:31.647424 -07:00:00"
+        ,"age":10
+        ,"price":50
+        ,"roles":[1,2]
+        ,"is_active":true
+        ,"struct":null
+        ,"meta":null
+      }
+      ,{
+         "account":"my_account_2"
+        ,"password":"my passowrd"
+        ,"gender":"female"
+        ,"price":50
+        ,"age":10
+        ,"display_name":"my display name"
+        ,"date_registered":"2015-10-30 14:21:31.647424 -07:00:00"
+        ,"meta":
+        {
+          "img":"https://scontent-ord1-1.xx.fbcdn.net/v/t1.0-1/c9.0.40.40/p40x40/1618502_10203352692842640_430525865_n.jpg?oh=10b7e45293509d2b667a27f21985891f&oe=582C74C9"
+        ,"gender":"male"
+        ,"languages":"english"
+        }
+      }
+    ]
+``` 
 
 ### UPDATE (PUT)
 TBD
