@@ -1,10 +1,11 @@
 {
   "name": "linkfuture-pg-api",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "RESTful API for PostgreSQL",
   "main": "./lib/index.js",
   "scripts": {
-    "test": "mocha ./test"
+    "test": "mocha ./test",
+    "release": "npm version patch && npm publish"
   },
   "repository": {
     "type": "git",

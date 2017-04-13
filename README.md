@@ -10,6 +10,7 @@ Table of Contents
 - [Usage](#usage)
 - [Query](#query)
 - [KeyWords](#keywords)
+- [Notice](#notice)
 
 ## Installation
 
@@ -137,11 +138,16 @@ TBD
 - $avg
 
 
-## Known issue
+## Notice
 - Struct  
    JSON to struct don't support yet, you have to use string type for now.  
    For example
    - JSON not support: "struct":{"name":"full update","supplier_id":[10,50],"price":1.99} 
    - Please use: "struct":"(\"fullsss12 update\",\"{10,50}\",1.99)"
+
+- Column name
+  it will be ignore if the column name does not exist in current table, but the query will be continue.
     
+- Bit
+  Bool type will auto convert to bit if the column type is bit.   
  

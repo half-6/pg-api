@@ -3,12 +3,14 @@
  * Project Name: LinkFuture.pg-api
  * Created by Cyokin on 4/10/2017
  */
-const $select= require('./../resource/pg/select.json');
+const $insert= require('./../resource/pg/insert.json');
+const $insert_bulk= require('./../resource/pg/insert_bulk.json');
 describe('Unit Test -- api/pg-api.js',function () {
-    describe('select api', ()=> {
-        it('select table', (done)=> {
+    describe('insert api', ()=> {
+        it('insert table by JSON', (done)=> {
             $chai.request(global.$app)
-                .get(`/api/db/city/1`)
+                .post(`/api/db/user`)
+                .send($insert)
                 .end(function (err,res) {
                     (err == null).should.be.true;
                     res.should.have.status(200);
@@ -18,22 +20,10 @@ describe('Unit Test -- api/pg-api.js',function () {
                     done();
                 })
         });
-        it('select table by JSON', (done)=> {
+        it('$insert bulk table by JSON', (done)=> {
             $chai.request(global.$app)
-                .get(`/api/db/city`)
-                .query({$q:JSON.stringify($select)})
-                .end(function (err,res) {
-                    (err == null).should.be.true;
-                    res.should.have.status(200);
-                    res.should.be.a.json;
-                    $logger.info(JSON.stringify(res.body) );
-                    res.body.should.have.property('response');
-                    done();
-                })
-        });
-        it('select view', (done)=> {
-            $chai.request(global.$app)
-                .get(`/api/db/v_test/1`)
+                .post(`/api/db/user`)
+                .send($insert_bulk)
                 .end(function (err,res) {
                     (err == null).should.be.true;
                     res.should.have.status(200);
