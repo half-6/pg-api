@@ -9,7 +9,7 @@ describe('Unit Test -- api/pg-api.js',function () {
         it('update table by JSON', (done)=> {
             $chai.request(global.$app)
                 .patch(`/api/db/user`)
-                .query({"$q":JSON.stringify($update)})
+                .send($update)
                 .end(function (err,res) {
                     (err == null).should.be.true;
                     res.should.have.status(200);

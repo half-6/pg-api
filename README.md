@@ -81,8 +81,15 @@ TBD
 ### PARTIALLY UPDATES (PATCH)
 - Update by JSON Query
 ``` HTTP
-    PATCH http://[host]/api/db/[table-name]?$q=[JSON QUERY]
-    PATCH http://[host]/api/db/user?$q={"display_name":"new name","age":10,"$where":{"id":{"$any":[1,2,3]}}}
+    PATCH http://[host]/api/db/[table-name]
+    PATCH http://[host]/api/db/user
+    {
+        "display_name":"new name",
+        "age":10,
+        "$where":{
+            "id":{"$any":[1,2,3]}
+        }
+    }
 ``` 
 
 ### DELETE (DELETE)
