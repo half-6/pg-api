@@ -56,7 +56,7 @@ app.use("/api/db/",$pgApi);
   ,"$where":{
       "display_name": "UNIT TEST",
       "account": {"$similar":"account%"},
-      "age":{"$gt":5},
+      "age":{"$gt":5,"$lt":50},
       "is_active":1,
       "roles":[1,2],
       "price":{"$between":[300,500]},
