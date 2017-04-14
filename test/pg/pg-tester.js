@@ -28,20 +28,22 @@ describe('Unit Test -- pg/pg-helper.js',function () {
                     }
                 ).catch($myUtil.errorBack("Select",done));
         });
-        // it('$query', (done)=> {
-        //     let column = ["id,name"];
-        //     $pgHelper.$db.conn.query("SELECT ${columns^} FROM ${table~} WHERE id = ${id}",{
-        //         table:"city",
-        //         columns:column.map($pgHelper.$pgp.as.name).join(),
-        //         id:1
-        //     })
-        //         .then(function (r) {
-        //                 $logger.info(JSON.stringify(r));
-        //                 $logger.info("got " + r.length + " records");
-        //                 done();
-        //             }
-        //         ).catch($util.errorBack("Select",done));
-        // });
+        it('INSERT', (done)=> {
+            let column = ["id,name"];
+            $pgHelper.$db.conn.result("INSERT INTO public.user (display_name,account,struct) VALUES (${display_name},${account},(${name}::varchar,${supplier_id}::int4[],${price}::numeric)::type_struct)",{
+                display_name:"234",
+                account:"234",
+                name:"234",
+                supplier_id:[2,3],
+                price:100
+            })
+                .then(function (r) {
+                        $logger.info(JSON.stringify(r));
+                        $logger.info("INSERT " + r.rowCount + " records");
+                        done();
+                    }
+                ).catch($myUtil.errorBack("INSERT",done));
+        });
 
     });
 });

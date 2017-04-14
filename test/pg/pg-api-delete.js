@@ -14,7 +14,7 @@ describe('Unit Test -- api/pg-api.js',function () {
                     res.should.have.status(200);
                     res.should.be.a.json;
                     $logger.info(JSON.stringify(res.body) );
-                    res.body.should.have.property('response');
+                    $expect(res.body.response).to.be.at.least(0);
                     done();
                 })
         });
@@ -27,7 +27,7 @@ describe('Unit Test -- api/pg-api.js',function () {
                     res.should.have.status(200);
                     res.should.be.a.json;
                     $logger.info(JSON.stringify(res.body) );
-                    res.body.should.have.property('response');
+                    $expect(res.body.response).to.be.at.least(0);
                     done();
                 })
         });

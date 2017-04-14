@@ -1,8 +1,11 @@
 SELECT
   CASE WHEN table_type = 'BASE TABLE' THEN ccu.column_name = tc.column_name
-  WHEN table_type = 'VIEW' THEN tc.ordinal_position = 1
-  ELSE FALSE
+    WHEN table_type = 'VIEW' THEN tc.ordinal_position = 1
+    ELSE FALSE
   END AS is_primary_key,
+  CASE WHEN data_type = 'ARRAY' THEN concat(substring(udt_name,2) , '[]')
+    ELSE udt_name
+  END AS type,
   tc.*,
   tb.table_type
 FROM information_schema.columns tc

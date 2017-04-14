@@ -16,11 +16,11 @@ describe('Unit Test -- api/pg-api.js',function () {
                     res.should.have.status(200);
                     res.should.be.a.json;
                     $logger.info(JSON.stringify(res.body) );
-                    res.body.should.have.property('response');
+                    res.body.response.should.have.length.above(0);
                     done();
                 })
         });
-        it('$insert bulk table by JSON', (done)=> {
+        it('insert bulk table by JSON', (done)=> {
             $chai.request(global.$app)
                 .post(`/api/db/user`)
                 .send($insert_bulk)
@@ -29,7 +29,7 @@ describe('Unit Test -- api/pg-api.js',function () {
                     res.should.have.status(200);
                     res.should.be.a.json;
                     $logger.info(JSON.stringify(res.body) );
-                    res.body.should.have.property('response');
+                    res.body.response.should.have.length.above(0);
                     done();
                 })
         });

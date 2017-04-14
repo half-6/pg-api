@@ -84,6 +84,7 @@ app.use("/api/db/",$pgApi);
         ,"display_name":"my display name"
         ,"gender":"male"
         ,"date_registered":"2015-10-30 14:21:31.647424 -07:00:00"
+        ,"struct":{"name":"full update","supplier_id":[10,50],"price":1.99} 
         ,"age":10
         ,"price":50
         ,"roles":[1,2]
@@ -191,12 +192,6 @@ TBD
 
 
 ## Notice
-- Struct  
-   JSON to struct don't support yet, you have to use string type for now.  
-   For example
-   - JSON not support: "struct":{"name":"full update","supplier_id":[10,50],"price":1.99} 
-   - Please use: "struct":"(\"fullsss12 update\",\"{10,50}\",1.99)"
-
 - Column name
   it will be ignore if the column name does not exist in current table, but the query will be continue.
     

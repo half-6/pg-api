@@ -8,7 +8,7 @@ describe('Unit Test -- api/pg-api.js',function () {
     describe('select api', ()=> {
         it('select table', (done)=> {
             $chai.request(global.$app)
-                .get(`/api/db/city/1`)
+                .get(`/api/db/user/1`)
                 .end(function (err,res) {
                     (err == null).should.be.true;
                     res.should.have.status(200);
@@ -20,11 +20,24 @@ describe('Unit Test -- api/pg-api.js',function () {
         });
         it('select table by JSON', (done)=> {
             $chai.request(global.$app)
-                .get(`/api/db/city`)
+                .get(`/api/db/user`)
                 .query({$q:JSON.stringify($select)})
                 .end(function (err,res) {
                     (err == null).should.be.true;
                     res.should.have.status(200);
+                    res.should.be.a.json;
+                    $logger.info(JSON.stringify(res.body) );
+                    res.body.should.have.property('response');
+                    done();
+                })
+        });
+        it('error test', (done)=> {
+            $chai.request(global.$app)
+                .get(`/api/db/user`)
+                //.query({$q:JSON.stringify($select)})
+                .end(function (err,res) {
+                    (err == null).should.be.false;
+                    res.should.have.status(400);
                     res.should.be.a.json;
                     $logger.info(JSON.stringify(res.body) );
                     res.body.should.have.property('response');

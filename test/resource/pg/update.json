@@ -4,7 +4,7 @@
   ,"date_updated":"2016-08-31 07:55:28"
   ,"roles" :[3,2]
   ,"meta":{"img":"http://ww","new":1,"c":2}
-  ,"struct":"(\"fullsss12 update\",\"{10,50}\",1.99)"
+  ,"struct":{"name":"full update","supplier_id":[10,50],"price":1.99}
 ,"$where":{
       "account":"my_account_1"
      ,"data_registered":{"$gt":"2015-02-29 21:21:31.647-0700"}
