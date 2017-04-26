@@ -9,6 +9,7 @@ Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
 - [Query](#query)
+- [Configuration](#configuration)
 - [KeyWords](#keywords)
 - [Notice](#notice)
 
@@ -24,8 +25,16 @@ npm install linkfuture-pg-api
 
 ## Usage
 
-```js
-const $pgApi = require("linkfuture-pg-api")($config.pg.connection);
+``` js
+const $config = {
+    "connection":"postgres://<user>:<password>@<host>:<port>/<dbname>",
+    "tables":{
+        "user":{
+            delete:false,//disable delete operation on user table, other operation will be available as default. 
+         }
+    }
+}
+const $pgApi = require("linkfuture-pg-api")($config);
 app.use("/api/db/",$pgApi);
 ```
 
@@ -45,7 +54,7 @@ app.use("/api/db/",$pgApi);
 ``` 
 
 - JSON Query Example
-``` javascript
+``` js
 {
   "*":true
   ,"unknown_field2": {"$multiply":["age","price","price"]}
@@ -159,6 +168,20 @@ TBD
     DELETE http://[host]/api/db/user?$q={"id":{"$any":[1,2,3]}}
 ``` 
 
+## Configuration
+For security reason, sometimes you may want to disable the operation on specific table, like disable delete operation on user table. You can leverage following configuration to reslove this issue.  
+By default, the API will enable all operations(select,delete,insert,update) on all tables and views
+``` js
+const $config = {
+    "connection":"postgres://<user>:<password>@<host>:<port>/<dbname>",
+    "tables":{
+        "user":{ 
+            select:true,
+            delete:false,//disable delete operation on user table
+         }
+    }
+}
+``` 
 
 ## KeyWords
 - $q 

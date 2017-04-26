@@ -5,7 +5,7 @@
  */
 
 const $json2Sql = require('./../../lib/pg/json-sql');
-const $pgHelper = require('./../../lib/pg/pg-helper')(global.$config.pg.connection);
+const $pgHelper = require('./../../lib/pg/pg-helper')(global.$config.pg);
 
 const $where = require('./../resource/pg/where.json');
 const $select = require('./../resource/pg/select.json');

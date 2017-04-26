@@ -4,7 +4,7 @@
  * Created by Cyokin on 4/10/2017
  */
 
-const $pgHelper = require('./../../lib/pg/pg-helper')(global.$config.pg.connection);
+const $pgHelper = require('./../../lib/pg/pg-helper')(global.$config.pg);
 const $select = require('./../resource/pg/select.json');
 const $select_group = require('./../resource/pg/select_group.json');
 

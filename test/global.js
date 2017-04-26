@@ -16,7 +16,18 @@ global.$logger = require('./../lib/utility/logger');
 global.$myUtil = require('./../lib/utility/util');
 global.$config = {
     pg:{
-        "connection":"postgres://postgres:qazwsx123@192.168.1.2:5432/postgres"
+        "connection":"postgres://postgres:qazwsx123@192.168.1.2:5432/postgres",
+        "tables":{
+            "user":{
+                 //select:true,
+                 delete:false,
+                 //insert:true,
+                 //update:true,
+                 columns:{
+                    password:{"select":false,"where":true,"insert":false,"update":false}
+                }
+            }
+        }
     }
 };
 global.$app = require('./http/app');

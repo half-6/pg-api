@@ -4,7 +4,7 @@
  * Created by Cyokin on 4/10/2017
  */
 const $delete= require('./../resource/pg/delete.json');
-describe('Unit Test -- api/pg-api.js',function () {
+describe('Unit Test -- api/pg-api.js(delete)',function () {
     describe('delete api', ()=> {
         it('delete table by id', (done)=> {
             $chai.request(global.$app)
@@ -25,6 +25,18 @@ describe('Unit Test -- api/pg-api.js',function () {
                 .end(function (err,res) {
                     (err == null).should.be.true;
                     res.should.have.status(200);
+                    res.should.be.a.json;
+                    $logger.info(JSON.stringify(res.body) );
+                    $expect(res.body.response).to.be.at.least(0);
+                    done();
+                })
+        });
+        it('delete table(user) access denied', (done)=> {
+            $chai.request(global.$app)
+                .delete(`/api/db/user/1`)
+                .end(function (err,res) {
+                    (err == null).should.be.false;
+                    res.should.have.status(400);
                     res.should.be.a.json;
                     $logger.info(JSON.stringify(res.body) );
                     $expect(res.body.response).to.be.at.least(0);

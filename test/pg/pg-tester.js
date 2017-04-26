@@ -13,11 +13,11 @@
  * on 1/9/2017.
  */
 
-const $pgHelper = require('./../../lib/pg/pg-helper')(global.$config.pg.connection);
+const $pgHelper = require('./../../lib/pg/pg-helper')(global.$config.pg);
 const $select = require('./../resource/pg/select.json');
 const $select_group = require('./../resource/pg/select_group.json');
 
-describe('Unit Test -- pg/pg-helper.js',function () {
+describe('Unit Test -- pg/pg-tester.js',function () {
     describe('Select', ()=> {
         it('$select', (done)=> {
             $pgHelper.$db.conn.query("SELECT * from public.user where account_id = ANY(${id})",{id:[1,2]})

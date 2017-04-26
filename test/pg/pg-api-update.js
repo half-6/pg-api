@@ -4,7 +4,7 @@
  * Created by Cyokin on 4/10/2017
  */
 const $update= require('./../resource/pg/update.json');
-describe('Unit Test -- api/pg-api.js',function () {
+describe('Unit Test -- api/pg-api.js(update)',function () {
     describe('update api', ()=> {
         it('update table by JSON', (done)=> {
             $chai.request(global.$app)

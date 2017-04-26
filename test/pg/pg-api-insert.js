@@ -5,7 +5,7 @@
  */
 const $insert= require('./../resource/pg/insert.json');
 const $insert_bulk= require('./../resource/pg/insert_bulk.json');
-describe('Unit Test -- api/pg-api.js',function () {
+describe('Unit Test -- api/pg-api.js(insert)',function () {
     describe('insert api', ()=> {
         it('insert table by JSON', (done)=> {
             $chai.request(global.$app)

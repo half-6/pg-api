@@ -4,7 +4,7 @@
  * Created by Cyokin on 4/10/2017
  */
 const $select= require('./../resource/pg/select.json');
-describe('Unit Test -- api/pg-api.js',function () {
+describe('Unit Test -- api/pg-api.js(select)',function () {
     describe('select api', ()=> {
         it('select table', (done)=> {
             $chai.request(global.$app)
