@@ -52,6 +52,11 @@ app.use("/api/db/",$pgApi);
     GET http://[host]/api/db/[table-name or view-name]?$q=[JSON QUERY]
     GET http://[host]/api/db/user?$q={"$where":{"id":{"$any":[1,2,3]}}}
 ``` 
+- Select by Query String
+``` HTTP
+    GET http://[host]/api/db/[table-name or view-name]?[ColumnName]=[ColumnValue]&$limit=10
+    GET http://[host]/api/db/user?age={"$gt":5,"$lt":50}&is_active=1&$limit=1
+``` 
 
 - JSON Query Example
 ``` js

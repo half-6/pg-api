@@ -18,6 +18,19 @@ describe('Unit Test -- api/pg-api.js(select)',function () {
                     done();
                 })
         });
+        it('select query string', (done)=> {
+            $chai.request(global.$app)
+                .get(`/api/db/user`)
+                .query({$limit:1,"age":{"$gt":5,"$lt":50},is_active:0})
+                .end(function (err,res) {
+                    (err == null).should.be.true;
+                    res.should.have.status(200);
+                    res.should.be.a.json;
+                    $logger.info(JSON.stringify(res.body) );
+                    res.body.should.have.property('response');
+                    done();
+                })
+        });
         it('select table', (done)=> {
             $chai.request(global.$app)
                 .get(`/api/db/user/1`)
