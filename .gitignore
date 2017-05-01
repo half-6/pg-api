@@ -4,3 +4,4 @@ output
 *.iml
 *.log
 /src/webapp/doc/
+/report/

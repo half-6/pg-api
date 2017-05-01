@@ -25,7 +25,15 @@ global.$config = {
                  //update:true,
                  columns:{
                     password:{"select":false,"where":true,"insert":false,"update":false}
-                }
+                 }
+            }
+        },
+        "events":{
+            before:function (action) {
+                $logger.info("Before event =>",action.action);
+            },
+            after:function (action,result) {
+                $logger.info("After event =>",action.action);
             }
         }
     }

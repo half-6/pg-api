@@ -173,7 +173,7 @@ TBD
     DELETE http://[host]/api/db/user?$q={"id":{"$any":[1,2,3]}}
 ``` 
 
-## Configuration
+## Configuration & Security
 For security reason, sometimes you may want to disable the operation on specific table, like disable delete operation on user table. You can leverage following configuration to reslove this issue.  
 By default, the API will enable all operations(select,delete,insert,update) on all tables and views
 ``` js
@@ -184,6 +184,14 @@ const $config = {
             select:true,
             delete:false,//disable delete operation on user table
          }
+    },
+    "events":{
+        before:function (action) { //a event happened before query database
+            $logger.info("Before event =>",action.action);
+        },
+        after:function (action,result) { //a event happened after query database
+            $logger.info("After event =>",action.action);
+        }
     }
 }
 ``` 
