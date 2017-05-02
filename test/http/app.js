@@ -6,7 +6,7 @@
 const $express = require('express');
 const $app = $express();
 const $www = require("./www");
-const $pgApi = require("./../../lib/pg/pg-api")(global.$config.pg);
+const $pgApi = require("./../../lib/index").api(global.$config.pg);
 const $bodyParser = require('body-parser');
 
 $app.use($bodyParser.json());

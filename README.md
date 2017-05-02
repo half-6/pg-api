@@ -34,8 +34,13 @@ const $config = {
          }
     }
 }
-const $pgApi = require("linkfuture-pg-api")($config);
-app.use("/api/db/",$pgApi);
+const $pgConnector = require("linkfuture-pg-api");
+// access through Restful API
+const $pgApi = $pgConnector.api($config);
+app.use("/api/db/",$pgApi);  
+// access through NodeJs
+const $pgQuery = $pgConnector.query($config);
+let result = await $pgQuery.select("user",{$where:{user_id:1}}); 
 ```
 
 ## Query
@@ -52,10 +57,17 @@ app.use("/api/db/",$pgApi);
     GET http://[host]/api/db/[table-name or view-name]?$q=[JSON QUERY]
     GET http://[host]/api/db/user?$q={"$where":{"id":{"$any":[1,2,3]}}}
 ``` 
+
 - Select by Query String
 ``` HTTP
     GET http://[host]/api/db/[table-name or view-name]?[ColumnName]=[ColumnValue]&$limit=10
     GET http://[host]/api/db/user?age={"$gt":5,"$lt":50}&is_active=1&$limit=1
+``` 
+
+- Select in Node
+``` js
+    const $pgQuery = $pgConnector.query($config);
+    let result = await $pgQuery.select("user",{$where:{user_id:1}});
 ``` 
 
 - JSON Query Example
@@ -143,6 +155,12 @@ app.use("/api/db/",$pgApi);
     ]
 ``` 
 
+- Insert in Node
+``` js
+    const $pgQuery = $pgConnector.query($config);
+    let result = await $pgQuery.insert("user",[{"account":"my_account_1",,"password":"my passowrd"}}]);
+``` 
+
 ### UPDATE (PUT)
 TBD
 
@@ -160,6 +178,12 @@ TBD
     }
 ``` 
 
+- Update in Node
+``` js
+    const $pgQuery = $pgConnector.query($config);
+    let result = await $pgQuery.update("user",{"display_name":"new name","$where":{"id":{"$any":[1,2,3]}}}});
+``` 
+
 ### DELETE (DELETE)
 - Delete by Primary Key
 ``` HTTP
@@ -173,7 +197,13 @@ TBD
     DELETE http://[host]/api/db/user?$q={"id":{"$any":[1,2,3]}}
 ``` 
 
-## Configuration & Security
+- Delete in Node
+``` js
+    const $pgQuery = $pgConnector.query($config);
+    let result = await $pgQuery.delete("user",{"id":{"$any":[1,2,3]}});
+``` 
+
+## Configuration
 For security reason, sometimes you may want to disable the operation on specific table, like disable delete operation on user table. You can leverage following configuration to reslove this issue.  
 By default, the API will enable all operations(select,delete,insert,update) on all tables and views
 ``` js
