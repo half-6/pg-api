@@ -42,8 +42,8 @@ global.$config = {
                     "select * from public.user where account_id=${id};",
                     "select * from public.city where id=${cityId}",
                     "insert into public.user(account,display_name) VALUES(${name1},${display_name1}),(${name2},${display_name2}) returning account_id",
-                    "update public.user set display_name = ${updated_display_name} where account=${name1}",
-                    "delete from public.user where account=${deletename}",
+                    "update public.user set price = ${price} where account=${name1}",
+                    "delete from public.user where display_name=${deletename}",
                 ],
                 "method":["GET","post"]
             }

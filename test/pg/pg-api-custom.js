@@ -16,9 +16,7 @@ describe('Unit Test -- api/pg-api.js(custom)',function () {
                         name1:"myName",
                         display_name1:"1213",
                         name2:"myName",
-                        display_name2:"1213",
-                        updated_display_name:"aaaaaaaaaa",
-
+                        display_name2:"1213"
                     })
                 .end(function (err,res) {
                     (err == null).should.be.true;
