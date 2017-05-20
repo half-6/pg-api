@@ -31,6 +31,19 @@ describe('Unit Test -- api/pg-api.js(delete)',function () {
                     done();
                 })
         });
+        it('delete table by query', (done)=> {
+            $chai.request(global.$app)
+                .delete(`/api/db/city`)
+                .query({"id":1})
+                .end(function (err,res) {
+                    (err == null).should.be.true;
+                    res.should.have.status(200);
+                    res.should.be.a.json;
+                    $logger.info(JSON.stringify(res.body) );
+                    $expect(res.body.response).to.be.at.least(0);
+                    done();
+                })
+        });
         it('delete table(user) access denied', (done)=> {
             $chai.request(global.$app)
                 .delete(`/api/db/user/1`)

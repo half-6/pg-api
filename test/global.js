@@ -35,6 +35,18 @@ global.$config = {
             after:function (action,result) {
                 $logger.info("After event =>",action.action);
             }
+        },
+        "custom":{
+            "find-user":{
+                "query":[
+                    "select * from public.user where account_id=${id};",
+                    "select * from public.city where id=${cityId}",
+                    "insert into public.user(account,display_name) VALUES(${name1},${display_name1}),(${name2},${display_name2}) returning account_id",
+                    "update public.user set display_name = ${updated_display_name} where account=${name1}",
+                    "delete from public.user where account=${deletename}",
+                ],
+                "method":["GET","post"]
+            }
         }
     }
 };

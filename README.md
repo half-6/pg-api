@@ -197,6 +197,12 @@ TBD
     DELETE http://[host]/api/db/user?$q={"id":{"$any":[1,2,3]}}
 ``` 
 
+- Delete by Query String
+``` HTTP
+    DELETE http://[host]/api/db/[table-name]?[ColumnName]=[ColumnValue]
+    DELETE http://[host]/api/db/user?age={"$gt":5,"$lt":50}&is_active=1
+``` 
+
 - Delete in Node
 ``` js
     const $pgQuery = $pgConnector.query($config);
@@ -223,6 +229,18 @@ const $config = {
             $logger.info("After event =>",action.action);
         }
     }
+    "custom":{ //custom query, you can define your own script with transaction 
+            "find-user":{
+                "query":[
+                    "select * from public.user where account_id=${id};",
+                    "select * from public.city where id=${cityId}",
+                    "insert into public.user(account,display_name) VALUES(${name1},${display_name1}),(${name2},${display_name2}) returning account_id",
+                    "update public.user set display_name = ${updated_display_name} where account=${name1}",
+                    "delete from public.user where account=${deletename}",
+                ],
+                "method":["GET","post"]
+            }
+     }
 }
 ``` 
 
