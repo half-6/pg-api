@@ -70,7 +70,8 @@ let result = await $pgQuery.select("user",{$where:{user_id:1}});
     let result = await $pgQuery.select("user",{$where:{user_id:1}});
 ``` 
 
-- JSON Query Example
+- JSON Query Example  
+  Normal Query
 ``` js
 {
   "*":true
@@ -99,6 +100,39 @@ let result = await $pgQuery.select("user",{$where:{user_id:1}});
   ,"$offset":0
 }
 ```
+   Group by Query
+``` js
+{
+  "gender":true
+  ,"sum_operation": {"$sum":"age"}
+  ,"sum_multiply_operation": {"$sum":{"$multiply":["age","price"]}}
+  ,"count_operation": {"$count":1}
+  ,"min_operation": {"$min":"age"}
+  ,"max_operation": {"$max":"age"}
+  ,"avg_operation": {"$avg":"age"}
+  ,"$where":{
+    "display_name": {"$like":"% display %"}
+    ,"data_registered":{"$gt":"2015-09-30 21:21:31.647424+00"}
+    ,"$or":[
+        { "account":"account_1"}
+      ,{ "account":"account_2"}
+      ,{"display_name": {"$similar":"my display name"}}
+    ]
+  }
+  ,"$limit":10
+  ,"$offset":0
+  ,"$group":["gender","age"]
+}
+```
+  Distinct Query
+``` js
+{
+  "$distinct":["price",{"unknown_field2":{"$multiply":["age","price","price"]}}]
+  ,"$limit":10
+  ,"$offset":0
+}
+```
+
 ### INSERT (POST)
 - INSERT by JSON Query
 ``` HTTP
@@ -273,6 +307,7 @@ const $config = {
 - $min
 - $max
 - $avg
+- $distinct
 
 
 ## Notice

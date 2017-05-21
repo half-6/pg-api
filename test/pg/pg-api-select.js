@@ -4,6 +4,7 @@
  * Created by Cyokin on 4/10/2017
  */
 const $select= require('./../resource/pg/select.json');
+const $select_distinct= require('./../resource/pg/select_distinct.json');
 describe('Unit Test -- api/pg-api.js(select)',function () {
     describe('select api', ()=> {
         it('select default', (done)=> {
@@ -56,6 +57,21 @@ describe('Unit Test -- api/pg-api.js(select)',function () {
                     done();
                 })
         });
+
+        it('select table by Distinct JSON', (done)=> {
+            $chai.request(global.$app)
+                .get(`/api/db/user`)
+                .query({$q:JSON.stringify($select_distinct)})
+                .end(function (err,res) {
+                    (err == null).should.be.true;
+                    res.should.have.status(200);
+                    res.should.be.a.json;
+                    $logger.info(JSON.stringify(res.body) );
+                    res.body.should.have.property('response');
+                    done();
+                })
+        });
+
         it('error test', (done)=> {
             $chai.request(global.$app)
                 .get(`/api/db/unknowtable`)

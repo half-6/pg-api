@@ -1,0 +1,5 @@
+{
+  "$distinct":["price",{"unknown_field2":{"$multiply":["age","price","price"]}}]
+  ,"$limit":10
+  ,"$offset":0
+}
