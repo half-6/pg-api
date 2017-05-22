@@ -1,6 +1,6 @@
 {
   "name": "linkfuture-pg-api",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "RESTful API for PostgreSQL",
   "main": "./lib/index.js",
   "scripts": {
