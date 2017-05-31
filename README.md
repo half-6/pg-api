@@ -10,6 +10,7 @@ Table of Contents
 - [Usage](#usage)
 - [Query](#query)
 - [Configuration](#configuration)
+- [Events](#events) 
 - [KeyWords](#keywords)
 - [Notice](#notice)
 
@@ -256,12 +257,12 @@ const $config = {
          }
     },
     "events":{
-        before:function (action) { //a event happened before query database
-            $logger.info("Before event =>",action.action);
+        onRequest:function () {
+            $logger.info("onRequest =>",JSON.stringify(arguments));
         },
-        after:function (action,result) { //a event happened after query database
-            $logger.info("After event =>",action.action);
-        }
+        on_select_city_request:function () {
+            $logger.info("on_select_city_request =>",JSON.stringify(arguments));
+        },
     }
     "custom":{ //custom query, you can define your own script with transaction 
             "find-user":{
@@ -276,6 +277,46 @@ const $config = {
             }
      }
 }
+``` 
+
+## Events
+Events life cycle, you can catch on either global level (i.e onRequest) or specific action level(i.e on_select_city_request).  
+Request => Build => Query => Complete
+- Request: when api load
+- Build: before build TSQL and verify column and parameters
+- Query: before db operation
+- Complete: after DB operation
+
+``` js
+        "events":{
+            onRequest:function () {
+                $logger.info("onRequest =>",JSON.stringify(arguments));
+            },
+            on_select_city_request:function () {
+                $logger.info("on_select_city_request =>",JSON.stringify(arguments));
+            },
+            onBuild:function () {
+                $logger.info("onBuild =>",JSON.stringify(arguments));
+            },
+            on_select_city_build:function () {
+                $logger.info("on_select_city_build =>",JSON.stringify(arguments));
+            },
+            onQuery:function () {
+                $logger.info("onQuery =>",JSON.stringify(arguments));
+            },
+            on_select_city_query:function () {
+                $logger.info("on_select_city_query =>",JSON.stringify(arguments));
+            },
+            onComplete:function () {
+                $logger.info("onComplete =>",JSON.stringify(arguments));
+            },
+            on_select_city_complete:function () {
+                $logger.info("on_select_city_complete =>",JSON.stringify(arguments));
+            },
+            on_delete_city_complete:function () {
+                $logger.info("on_delete_city_complete =>",JSON.stringify(arguments));
+            },
+        },
 ``` 
 
 ## KeyWords
