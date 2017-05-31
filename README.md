@@ -293,11 +293,17 @@ Request => Build => Query => Complete
             onRequest:function () {
                 $logger.info("onRequest =>",JSON.stringify(arguments));
             },
+            on_city_request:function () {
+                $logger.info("on_city_request =>",JSON.stringify(arguments));
+            },
             on_select_city_request:function () {
                 $logger.info("on_select_city_request =>",JSON.stringify(arguments));
             },
             onBuild:function () {
                 $logger.info("onBuild =>",JSON.stringify(arguments));
+            },
+            on_city_build:function () {
+                $logger.info("on_city_build =>",JSON.stringify(arguments));
             },
             on_select_city_build:function () {
                 $logger.info("on_select_city_build =>",JSON.stringify(arguments));
@@ -305,12 +311,18 @@ Request => Build => Query => Complete
             onQuery:function () {
                 $logger.info("onQuery =>",JSON.stringify(arguments));
             },
+            on_city_query:function () {
+                $logger.info("on_city_query =>",JSON.stringify(arguments));
+            },            
             on_select_city_query:function () {
                 $logger.info("on_select_city_query =>",JSON.stringify(arguments));
             },
             onComplete:function () {
                 $logger.info("onComplete =>",JSON.stringify(arguments));
             },
+            on_city_complete:function () {
+                $logger.info("on_select_city_complete =>",JSON.stringify(arguments));
+            },            
             on_select_city_complete:function () {
                 $logger.info("on_select_city_complete =>",JSON.stringify(arguments));
             },
