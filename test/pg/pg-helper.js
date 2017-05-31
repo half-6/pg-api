@@ -17,7 +17,16 @@ describe('Unit Test -- pg/pg-helper.js',function () {
                         r.should.be.a.object;
                         done();
                     }
-                ).catch($myUtil.errorBack("Select",done));
+                ).catch($myUtil.errorBack("$select",done));
+        });
+        it('$selectOne', (done)=> {
+            $pgHelper.selectOne("user",$select)
+                .then(function (r) {
+                        $logger.info(JSON.stringify(r));
+                        r.should.be.a.object;
+                        done();
+                    }
+                ).catch($myUtil.errorBack("$selectOne",done));
         });
         it('$select_group', (done)=> {
             $pgHelper.select("user",$select_group)

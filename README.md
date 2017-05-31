@@ -69,6 +69,7 @@ let result = await $pgQuery.select("user",{$where:{user_id:1}});
 ``` js
     const $pgQuery = $pgConnector.query($config);
     let result = await $pgQuery.select("user",{$where:{user_id:1}});
+    let result = await $pgQuery.selectOne("user",{$where:{user_id:1}});
 ``` 
 
 - JSON Query Example  
