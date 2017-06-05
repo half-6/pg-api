@@ -197,8 +197,50 @@ let result = await $pgQuery.select("user",{$where:{user_id:1}});
     let result = await $pgQuery.insert("user",[{"account":"my_account_1",,"password":"my passowrd"}}]);
 ``` 
 
-### UPDATE (PUT)
-TBD
+### UPSERT (PUT)
+The UPDATE action to be performed in case of a conflict,otherwise do insert.  
+Reference https://www.postgresql.org/docs/9.5/static/sql-insert.html for more
+- UPSERT by JSON Query
+``` HTTP
+    PUT http://[host]/api/db/[table-name]/[constraint_name]
+    PUT http://[host]/api/db/city/city_pkey
+    {
+        "id":1  //update if id is exist
+        ,"name":"my_account_2"
+        ,"district":"11213"
+        ,"countrycode":"my passowrd"
+        ,"population":6000
+    }
+```  
+    
+- BULK INSERT by JSON Query
+``` HTTP
+    PUT http://[host]/api/db/[table-name]/[constraint_name]
+    PUT http://[host]/api/db/city/city_pkey
+    [
+      {
+        "id":1 //update if id is exist
+        ,"name":"my_account_2" 
+        ,"countrycode":"my passowrd"
+        ,"district":"11213"
+        ,"population":6000
+      },
+      {
+        "id":2 //update if id is exist
+        ,"name":"my_account_1"
+        ,"countrycode":"my passowrd"
+        ,"district":"22222"
+        ,"population":7000
+      }
+    ]
+```  
+
+- Upsert in Node
+``` js
+    const $pgQuery = $pgConnector.query($config);
+    let result = await $pgQuery.upsert("user",[{"account":"my_account_1",,"password":"my passowrd"}}],"city_pkey");
+``` 
+
 
 ### PARTIALLY UPDATES (PATCH)
 - Update by JSON Query
@@ -370,4 +412,6 @@ Request => Build => Query => Complete
     
 - Bit
   Bool type will auto convert to bit if the column type is bit.   
- 
+
+- Node 7+ Only
+  The library is writen on Node 7+, heavily use await/async. 
