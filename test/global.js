@@ -25,7 +25,9 @@ global.$config = {
                  //update:true,
                  columns:{
                     password:{"select":false,"where":true,"insert":false,"update":false}
-                 }
+                 },
+                 max_limit:10000,
+                 limit:10
             }
         },
         // "events":{
