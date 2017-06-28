@@ -1,3 +1,5 @@
 test/
 doc/
-/report/
+report/
+.idea/
+*.iml

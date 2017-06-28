@@ -390,6 +390,7 @@ Request => Build => Query => Complete
 - $lte
 - $ne
 - $like
+- $ilike
 - $similar
 - $contain
 - $any
