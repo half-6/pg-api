@@ -1,3 +1,4 @@
 --require ./test/global
 --reporter mochawesome
 --reporter-options reportDir=report,reportTitle=LINK_FUTURE
+--timeout 15000

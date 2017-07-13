@@ -9,6 +9,8 @@ Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
 - [Query](#query)
+- [Query Composite](#composite)
+- [Query Enum](#enum)
 - [Configuration](#configuration)
 - [Events](#events) 
 - [KeyWords](#keywords)
@@ -287,6 +289,19 @@ Reference https://www.postgresql.org/docs/9.5/static/sql-insert.html for more
     let result = await $pgQuery.delete("user",{"id":{"$any":[1,2,3]}});
 ``` 
 
+## Composite  
+Query composite 
+``` HTTP
+    GET http://[host]/api/db/composite/[composite name]
+    GET http://[host]/api/db/composite/type_struct
+``` 
+## Enum  
+Query enum 
+``` HTTP
+    GET http://[host]/api/db/enum/[enum name]
+    GET http://[host]/api/db/enum/type_gender
+``` 
+
 ## Configuration
 For security reason, sometimes you may want to disable the operation on specific table, like disable delete operation on user table. You can leverage following configuration to reslove this issue.  
 By default, the API will enable all operations(select,delete,insert,update) on all tables and views
@@ -300,6 +315,12 @@ const $config = {
             max_limit:5000, //set default select max results, by default is 1000
             limit:12 //set default select limit, by default is 10
          }
+    },
+    "composites":{
+        "type_struct":false //disable type_struct composite query, 
+    },
+    "enum":{
+        "type_gender":false //disable type_gender enum query, 
     },
     "events":{
         onRequest:function () {
