@@ -3,3 +3,4 @@ doc/
 report/
 .idea/
 *.iml
+node_modules/
