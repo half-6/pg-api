@@ -1,6 +1,6 @@
 {
   "name": "linkfuture-pg-api",
-  "version": "0.0.35",
+  "version": "0.0.36",
   "description": "RESTful API for PostgreSQL",
   "main": "./lib/index.js",
   "scripts": {
@@ -19,7 +19,8 @@
     "database",
     "restful",
     "api",
-    "json"
+    "json",
+    "linkfuture"
   ],
   "author": {
     "name": "Cyokin Zhang",
