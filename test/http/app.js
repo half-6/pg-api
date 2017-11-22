@@ -5,7 +5,7 @@
  */
 const $express = require('express');
 const $app = $express();
-const $www = require("./www");
+//const $www = require("./www");
 const $pgApi = require("./../../lib/index").api(global.$config.pg);
 const $bodyParser = require('body-parser');
 
@@ -13,4 +13,6 @@ $app.use($bodyParser.json());
 $app.use($bodyParser.urlencoded({ extended: false }));
 $app.use("/api/db/",$pgApi);
 
-module.exports =$app;
+module.exports = {
+    app:$app
+};

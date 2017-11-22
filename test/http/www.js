@@ -71,6 +71,13 @@ module.exports = app => {
         : 'port ' + addr.port;
     $logger.info(`Listening on ${bind}`);
   }
+
+  function close(callback) {
+      $server.close(callback);
+  }
+  return {
+      close
+  }
 };
 
 

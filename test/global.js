@@ -81,7 +81,8 @@ global.$config = {
         }
     }
 };
-global.$app = require('./http/app');
+global.$http = require('./http/app');
+global.$app = $http.app;
 
 global.$pg = require('./../lib/index');
 global.$pg_query = $pg.query(global.$config.pg);
@@ -89,7 +90,7 @@ global.$pg_api = $pg.api(global.$config.pg);
 
 
 global.$serverErrorVerify=(err,res)=>{
-    (err != null).should.be.true;
+    (err !== null).should.be.true;
     $logger.info(err.message);
     res.should.have.status(500);
 };
