@@ -12,15 +12,17 @@ $chai.use($chaiHttp);
 global.$should = $chai.should();
 global.$assert = require('assert');
 global.$expect = $chai.expect;
+
+
 global.$logger = require('./../lib/utility/logger');
 global.$myUtil = require('./../lib/utility/util');
 global.$config = {
     pg:{
-        "connection":"postgres://postgres:qazwsx123@192.168.1.2:5432/postgres",
+        "connection":"postgres://yvbhpqowumfoav:377b5864babe3e4d1d62aadd30b96005b57bc17ffc1e716b0ae1e85ef82a4f6f@ec2-54-243-215-234.compute-1.amazonaws.com:5432/d6afttk3vvims0?ssl=true",
         "tables":{
             "user":{
                  //select:true,
-                 delete:false,
+                 delete:true,
                  //insert:true,
                  //update:true,
                  columns:{
@@ -28,7 +30,13 @@ global.$config = {
                  },
                  max_limit:10000,
                  limit:10
+            },
+            "company":{
+                delete:false,
             }
+        },
+        "composites":{
+            "type_struct":true
         },
         // "events":{
         //     onRequest:function () {
@@ -62,11 +70,11 @@ global.$config = {
         "custom":{
             "find-user":{
                 "query":[
-                    "select * from public.user where account_id=${id};",
-                    "select * from public.city where id=${cityId}",
-                    "insert into public.user(account,display_name) VALUES(${name1},${display_name1}),(${name2},${display_name2}) returning account_id",
-                    "update public.user set price = ${price} where account=${name1}",
-                    "delete from public.user where display_name=${deletename}",
+                    "select * from public.user where account_id=${account_id};",
+                    "select * from public.company where company_id=${company_id}",
+                    "insert into public.user(account,display_name) VALUES(${account1},${display_name1}),(${account2},${display_name2}) returning account_id",
+                    "update public.user set price = ${price} where account=${account1}",
+                    "delete from public.user where display_name=${display_name2}",
                 ],
                 "method":["GET","post"]
             }
@@ -74,6 +82,11 @@ global.$config = {
     }
 };
 global.$app = require('./http/app');
+
+global.$pg = require('./../lib/index');
+global.$pg_query = $pg.query(global.$config.pg);
+global.$pg_api = $pg.api(global.$config.pg);
+
 
 global.$serverErrorVerify=(err,res)=>{
     (err != null).should.be.true;
@@ -92,3 +105,11 @@ global.$success= function (name,done) {
         done();
     }
 }
+global.$async=function(fn)
+{
+    return (done) => {
+        Promise
+            .resolve(fn(done))
+            .catch(done);
+    };
+};

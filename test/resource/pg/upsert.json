@@ -1,7 +1,7 @@
 {
-  "id":1
-,"name":"my_account_2"
-,"district":"11213"
-,"countrycode":"my passowrd"
-,"population":6000
+  "account_id":1,
+  "account":"UNIT_TEST"
+,"password":"UNIT_TEST"
+,"display_name":"UNIT_TEST display name"
+,"gender":"male"
 }

@@ -4,11 +4,18 @@
  * Created by Cyokin on 4/10/2017
  */
 const $delete= require('./../resource/pg/delete.json');
+const $insert= require('./../resource/pg/insert.json');
 describe('Unit Test -- api/pg-api.js(delete)',function () {
+    let account_id = null;
+    before($async( async done=>{
+        let result = await $pg_query.insert("user",$insert);
+        account_id = result[0].account_id;
+        done();
+    }));
     describe('delete api', ()=> {
         it('delete table by id', (done)=> {
             $chai.request(global.$app)
-                .delete(`/api/db/city/1`)
+                .delete(`/api/db/user/${account_id}`)
                 .end(function (err,res) {
                     (err == null).should.be.true;
                     res.should.have.status(200);
@@ -20,7 +27,7 @@ describe('Unit Test -- api/pg-api.js(delete)',function () {
         });
         it('delete table by JSON', (done)=> {
             $chai.request(global.$app)
-                .delete(`/api/db/city`)
+                .delete(`/api/db/user`)
                 .query({"$q":JSON.stringify($delete)})
                 .end(function (err,res) {
                     (err == null).should.be.true;
@@ -33,8 +40,8 @@ describe('Unit Test -- api/pg-api.js(delete)',function () {
         });
         it('delete table by query', (done)=> {
             $chai.request(global.$app)
-                .delete(`/api/db/city`)
-                .query({"id":1})
+                .delete(`/api/db/user`)
+                .query({"account_id":account_id})
                 .end(function (err,res) {
                     (err == null).should.be.true;
                     res.should.have.status(200);
@@ -46,7 +53,7 @@ describe('Unit Test -- api/pg-api.js(delete)',function () {
         });
         it('delete table(user) access denied', (done)=> {
             $chai.request(global.$app)
-                .delete(`/api/db/user/1`)
+                .delete(`/api/db/company/1`)
                 .end(function (err,res) {
                     (err == null).should.be.false;
                     res.should.have.status(400);

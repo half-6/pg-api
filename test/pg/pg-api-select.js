@@ -87,7 +87,7 @@ describe('Unit Test -- api/pg-api.js(select)',function () {
         });
         it('select view', (done)=> {
             $chai.request(global.$app)
-                .get(`/api/db/v_test/1`)
+                .get(`/api/db/v_user/1`)
                 .end(function (err,res) {
                     (err == null).should.be.true;
                     res.should.have.status(200);

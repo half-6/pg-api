@@ -4,7 +4,7 @@
  * Created by Cyokin on 4/10/2017
  */
 const $update= require('./../resource/pg/update.json');
-const $update_city= require('./../resource/pg/update_city.json');
+const $update_company= require('./../resource/pg/update_company.json');
 describe('Unit Test -- api/pg-api.js(update)',function () {
     describe('update user', ()=> {
         it('update table by JSON', (done)=> {
@@ -24,8 +24,8 @@ describe('Unit Test -- api/pg-api.js(update)',function () {
     describe('update city', ()=> {
         it('update table by JSON', (done)=> {
             $chai.request(global.$app)
-                .patch(`/api/db/city`)
-                .send($update_city)
+                .patch(`/api/db/company`)
+                .send($update_company)
                 .end(function (err,res) {
                     (err == null).should.be.true;
                     res.should.have.status(200);

@@ -1,10 +1,11 @@
 {
   "name": "linkfuture-pg-api",
-  "version": "0.0.36",
+  "version": "0.1.0",
   "description": "RESTful API for PostgreSQL",
   "main": "./lib/index.js",
   "scripts": {
     "test": "mocha ./test",
+    "check": "eslint .",
     "release": "npm version patch && npm publish"
   },
   "repository": {
@@ -41,7 +42,15 @@
     "chai-http": "*",
     "mocha": "*",
     "mochawesome": "*",
-    "body-parser": "~1.15.2"
+    "body-parser": "~1.15.2",
+    "babel-eslint": "^8.0.1",
+    "eslint": "^4.9.0",
+    "eslint-config-formidable": "^3.0.0",
+    "eslint-config-prettier": "^2.6.0",
+    "eslint-plugin-filenames": "^1.2.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-prettier": "^2.3.1",
+    "prettier": "^1.7.4"
   },
   "engines": {
     "node": ">= 7.0.0"

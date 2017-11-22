@@ -1,16 +1,16 @@
 [
   {
-    "id":1
-  ,"name":"my_account_2"
-  ,"countrycode":"my passowrd"
-  ,"district":"11213"
-  ,"population":6000
+    "account_id":1,
+    "account":"UNIT_TEST1"
+  ,"password":"UNIT_TEST1"
+  ,"display_name":"UNIT_TEST1 display name"
+  ,"gender":"male"
   },
   {
-    "id":2
-  ,"name":"my_account_1"
-  ,"countrycode":"my passowrd"
-  ,"district":"22222"
-  ,"population":7000
+    "account_id":2,
+    "account":"UNIT_TEST2"
+  ,"password":"UNIT_TEST2"
+  ,"display_name":"UNIT_TEST1 display name"
+  ,"gender":"male"
   }
 ]

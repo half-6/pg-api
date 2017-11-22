@@ -1,0 +1,12 @@
+test/
+db/
+build/
+doc/
+.idea/
+node_modules/
+output
+/src/webapp/doc/
+/package-lock.json
+/logs/
+*.tgz
+/report/

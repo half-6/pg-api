@@ -9,7 +9,7 @@ describe('Unit Test -- api/pg-api.js(insert)',function () {
     describe('upsert api', ()=> {
         it('upsert table by JSON', (done)=> {
             $chai.request(global.$app)
-                .put(`/api/db/city/city_pkey`)
+                .put(`/api/db/user/user_pkey`)
                 .send($upsert)
                 .end(function (err,res) {
                     (err == null).should.be.true;
@@ -22,7 +22,7 @@ describe('Unit Test -- api/pg-api.js(insert)',function () {
         });
         it('upsert bulk table by JSON', (done)=> {
             $chai.request(global.$app)
-                .put(`/api/db/city/city_pkey`)
+                .put(`/api/db/user/user_pkey`)
                 .send($upsert_bulk)
                 .end(function (err,res) {
                     (err == null).should.be.true;

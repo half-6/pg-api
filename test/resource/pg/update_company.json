@@ -1,0 +1,7 @@
+{
+  "company_name":"UNIT_TEST",
+  "company_status":"approved",
+  "$where":{
+      "company_id":1
+  }
+}
