@@ -5,3 +5,4 @@ output
 *.log
 /src/webapp/doc/
 /report/
+/package-lock.json
