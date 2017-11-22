@@ -55,11 +55,10 @@ describe('Unit Test -- api/pg-api.js(delete)',function () {
             $chai.request(global.$app)
                 .delete(`/api/db/company/1`)
                 .end(function (err,res) {
+                    $logger.info(JSON.stringify(res.body) );
                     (err == null).should.be.false;
                     res.should.have.status(400);
                     res.should.be.a.json;
-                    $logger.info(JSON.stringify(res.body) );
-                    $expect(res.body.response).to.be.at.least(0);
                     done();
                 })
         });
