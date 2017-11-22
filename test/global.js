@@ -13,6 +13,11 @@ global.$should = $chai.should();
 global.$assert = require('assert');
 global.$expect = $chai.expect;
 
+const $express = require('express');
+global.$app = $express();
+const $bodyParser = require('body-parser');
+$app.use($bodyParser.json());
+$app.use($bodyParser.urlencoded({ extended: false }));
 
 global.$logger = require('./../lib/utility/logger');
 global.$myUtil = require('./../lib/utility/util');
@@ -81,12 +86,14 @@ global.$config = {
         }
     }
 };
-global.$http = require('./http/app');
-global.$app = $http.app;
 
 global.$pg = require('./../lib/index');
-global.$pg_query = $pg.query(global.$config.pg);
-global.$pg_api = $pg.api(global.$config.pg);
+global.$pgQuery = $pg.query(global.$config.pg);
+global.$pgApi = $pg.api(global.$config.pg);
+
+$app.use("/api/db/",$pgApi);
+
+global.$chaiRequest = $chai.request(global.$app);
 
 
 global.$serverErrorVerify=(err,res)=>{

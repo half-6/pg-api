@@ -8,7 +8,7 @@ const $insert= require('./../resource/pg/insert.json');
 describe('Unit Test -- api/pg-api.js(delete)',function () {
     let account_id = null;
     before($async( async done=>{
-        let result = await $pg_query.insert("user",$insert);
+        let result = await $pgQuery.insert("user",$insert);
         account_id = result[0].account_id;
         done();
     }));
