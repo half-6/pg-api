@@ -17,7 +17,7 @@ describe('Unit Test -- pg/json-sql.js',function () {
             $pgHelper.getSchema()
                 .then(schema=>{
                     let select = $json2Sql.buildSelect(schema.tables.user,$select);
-                    $logger.info("buildSelect",select);
+                    $logger.info("buildSelect",JSON.stringify(select));
                     done()
                 })
                 .catch($error("query failed",done));
@@ -26,7 +26,7 @@ describe('Unit Test -- pg/json-sql.js',function () {
             $pgHelper.getSchema()
                 .then(schema=>{
                     let select = $json2Sql.buildSelect(schema.tables.user,$select_group);
-                    $logger.info("buildSelectGroup",select);
+                    $logger.info("buildSelectGroup",JSON.stringify(select) );
                     done()
                 })
                 .catch($error("query failed",done));

@@ -6,9 +6,11 @@ http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api
 
 # release to npm
 npm version patch
-npm publish
+npm publish --access=public
 
 # local publish
 npm pack
 npm install D:\Codes\LinkFuture.pg-api\linkfuture-pg-api-0.0.15.tgz
+
+npm deprecate linkfuture-pg-api@"< 0.0.36" "This project has been renamed to @linkfuture/pg-api. Install using @linkfuture/pg-api instead"
 

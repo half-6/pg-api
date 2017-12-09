@@ -1,8 +1,8 @@
 # PG-API
-<span class="badge-npmversion"><a href="https://npmjs.org/package/linkfuture-pg-api" title="View this project on NPM"><img src="https://img.shields.io/npm/v/linkfuture-pg-api.svg" alt="NPM version" /></a></span>
-<span class="badge-npmdownloads"><a href="https://npmjs.org/package/linkfuture-pg-api" title="NPM downloads"><img src="https://img.shields.io/npm/dm/linkfuture-pg-api.svg" alt="NPM downloads" /></a></span>
-<span class="badge-npmstatus"><a href="https://circleci.com/gh/cyokin/linkfuture-pg-api" title="NPM Status"><img src="https://img.shields.io/circleci/project/github/cyokin/pg-api.svg" alt="NPM Status" /></a></span>
-<span class="badge-npmlicense"><a href="#license" title="License"><img src="https://img.shields.io/npm/l/linkfuture-pg-api.svg?style=flat-square" alt="License" /></a></span>
+<span class="badge-npmversion"><a href="https://npmjs.org/package/@linkfuture/pg-api" title="View this project on NPM"><img src="https://img.shields.io/npm/v/@linkfuture/pg-api.svg" alt="NPM version" /></a></span>
+<span class="badge-npmdownloads"><a href="https://npmjs.org/package/@linkfuture/pg-api" title="NPM downloads"><img src="https://img.shields.io/npm/dm/@linkfuture/pg-api.svg" alt="NPM downloads" /></a></span>
+<span class="badge-npmstatus"><a href="https://circleci.com/gh/cyokin/@linkfuture/pg-api" title="NPM Status"><img src="https://img.shields.io/circleci/project/github/cyokin/pg-api.svg" alt="NPM Status" /></a></span>
+<span class="badge-npmlicense"><a href="#license" title="License"><img src="https://img.shields.io/npm/l/@linkfuture/pg-api.svg?style=flat-square" alt="License" /></a></span>
 
 RESTful API for PostgreSQL  
 <span style="color:gray; font-size: 10px;">An easier way to query database</span>
@@ -20,12 +20,12 @@ Table of Contents
 
 ## Installation
 
-The easiest way to install linkfuture-pg-api is with [`npm`][npm].
+The easiest way to install @linkfuture/pg-api is with [`npm`][npm].
 
 [npm]: https://www.npmjs.com/
 
 ```sh
-npm install linkfuture-pg-api
+npm install @linkfuture/pg-api
 ```
 
 ## Usage
@@ -39,7 +39,7 @@ const $config = {
          }
     }
 }
-const $pgConnector = require("linkfuture-pg-api");
+const $pgConnector = require("@linkfuture/pg-api");
 // access through Restful API
 const $pgApi = $pgConnector.api($config);
 app.use("/api/db/",$pgApi);  
