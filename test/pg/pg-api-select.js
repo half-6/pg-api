@@ -19,6 +19,7 @@ describe('Unit Test -- api/pg-api.js(select)',function () {
                     res.should.have.status(200);
                     res.should.be.a.json;
                     $logger.info(JSON.stringify(res.body) );
+	                  $assert(res.body.response.pager.total > 0)
                     res.body.should.have.property('response');
                     done();
                 })
@@ -26,12 +27,13 @@ describe('Unit Test -- api/pg-api.js(select)',function () {
         it('select query string', (done)=> {
             $chaiRequest
                 .get(`/api/db/user`)
-                .query({$limit:1,"age":{"$gt":5,"$lt":50},is_active:0})
+                .query({$limit:1,"age":{"$gt":5,"$lt":50},is_active:0,$disableCount:true})
                 .end(function (err,res) {
                     (err == null).should.be.true;
                     res.should.have.status(200);
                     res.should.be.a.json;
-                    $logger.info(JSON.stringify(res.body) );
+	                  $logger.info(JSON.stringify(res.body) );
+                    $assert(res.body.response.pager.total === undefined)
                     res.body.should.have.property('response');
                     done();
                 })

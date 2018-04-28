@@ -430,8 +430,8 @@ Request => Build => Query => Complete
 - $max
 - $avg
 - $distinct
-
-
+- $disableCount  
+   disable select count for pagination in order to improve select performance, default is false.
 ## Notice
 - Column name
   it will be ignore if the column name does not exist in current table, but the query will be continue.
