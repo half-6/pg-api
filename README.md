@@ -32,7 +32,13 @@ npm install @linkfuture/pg-api
 
 ``` js
 const $config = {
-    "connection":"postgres://<user>:<password>@<host>:<port>/<dbname>",
+    "connection":{
+	  "user": "postgres",
+      "host": "<hostname>",
+      "database": "<database>",
+      "password": "<password>",
+      "port": 5432
+	},
     "tables":{
         "user":{
             delete:false,//disable delete operation on user table, other operation will be available as default. 
@@ -46,6 +52,15 @@ app.use("/api/db/",$pgApi);
 // access through NodeJs
 const $pgQuery = $pgConnector.query($config);
 let result = await $pgQuery.select("user",{$where:{user_id:1}}); 
+```
+
+## Env Support
+``` js
+PGUSER=dbuser
+PGHOST=database.server.com
+PGPASSWORD=secretpassword
+PGDATABASE=mydb
+PGPORT=3211
 ```
 
 ## Query
@@ -74,6 +89,7 @@ let result = await $pgQuery.select("user",{$where:{user_id:1}});
     const $pgQuery = $pgConnector.query($config);
     let result = await $pgQuery.select("user",{$where:{user_id:1}});
     let result = await $pgQuery.selectOne("user",{$where:{user_id:1}});
+    let result = await $pgQuery.selectById("user",1);
 ``` 
 
 - JSON Query Example  
@@ -245,7 +261,6 @@ Reference https://www.postgresql.org/docs/9.5/static/sql-insert.html for more
     let result = await $pgQuery.upsert("user",[{"account":"my_account_1",,"password":"my passowrd"}}],"city_pkey");
 ``` 
 
-
 ### PARTIALLY UPDATES (PATCH)
 - Update by JSON Query
 ``` HTTP
@@ -289,6 +304,7 @@ Reference https://www.postgresql.org/docs/9.5/static/sql-insert.html for more
 ``` js
     const $pgQuery = $pgConnector.query($config);
     let result = await $pgQuery.delete("user",{"id":{"$any":[1,2,3]}});
+    let result = await $pgQuery.deleteById("user",1);
 ``` 
 
 ## Composite  
@@ -297,6 +313,7 @@ Query composite
     GET http://[host]/api/db/composite/[composite name]
     GET http://[host]/api/db/composite/type_struct
 ``` 
+
 ## Enum  
 Query enum 
 ``` HTTP
@@ -398,6 +415,22 @@ Request => Build => Query => Complete
             },
         },
 ``` 
+
+## pg repositories  
+``` js
+const $pgConnector = require("@linkfuture/pg-api");
+const $repository = await $pgConnector.repository.build(config);
+
+//if we have user table or view
+$repository.tables.user.select(<json query>);
+$repository.tables.user.insert(<json query>);
+
+//if we have type_struct composite
+$repository.composites.type_struct
+
+//if we have type_gender composite
+$repository.enums.type_gender
+```
 
 ## KeyWords
 - $q 

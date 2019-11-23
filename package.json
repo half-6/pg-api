@@ -1,6 +1,6 @@
 {
   "name": "@linkfuture/pg-api",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "RESTful API for PostgreSQL",
   "main": "./lib/index.js",
   "scripts": {
