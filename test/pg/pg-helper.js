@@ -15,6 +15,8 @@ describe('Unit Test -- pg/pg-helper.js',function () {
                 .then(function (r) {
                         $logger.info(JSON.stringify(r));
                         r.should.be.a.object;
+                        r.data.should.have.length.above(0)
+                        $assert(r.pager.total>0)
                         done();
                     }
                 ).catch($myUtil.errorBack("$select",done));

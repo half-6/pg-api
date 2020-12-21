@@ -23,15 +23,7 @@ global.$logger = require('./../lib/utility/logger');
 global.$myUtil = require('./../lib/utility/util');
 global.$config = {
     pg:{
-        "connection":"postgres://yvbhpqowumfoav:377b5864babe3e4d1d62aadd30b96005b57bc17ffc1e716b0ae1e85ef82a4f6f@ec2-54-243-215-234.compute-1.amazonaws.com:5432/d6afttk3vvims0?ssl=true&sslmode=no-verify",
-        // "connection":{
-        //     "user": "yvbhpqowumfoav",
-        //     "host": "ec2-54-243-215-234.compute-1.amazonaws.com",
-        //     "database": "d6afttk3vvims0",
-        //     "password": "377b5864babe3e4d1d62aadd30b96005b57bc17ffc1e716b0ae1e85ef82a4f6f",
-        //     "port": 5432,
-        //     "ssl": { rejectUnauthorized: false }
-        // },
+        "connection":process.env.PG,
         "tables":{
             "user":{
                  //select:true,
