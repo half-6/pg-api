@@ -14,3 +14,4 @@ npm install D:\Codes\LinkFuture.pg-api\linkfuture-pg-api-0.0.15.tgz
 
 npm deprecate linkfuture-pg-api@"< 0.0.36" "This project has been renamed to @linkfuture/pg-api. Install using @linkfuture/pg-api instead"
 
+

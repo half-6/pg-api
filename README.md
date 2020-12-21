@@ -31,13 +31,16 @@ npm install @linkfuture/pg-api
 ## Usage
 
 ``` js
+//reference: https://github.com/brianc/node-postgres/tree/master/packages/pg-connection-string
 const $config = {
+    //"connection":"postgres://<user>:<password>@<host>:<port>/<database>?ssl=true&sslmode=no-verify",
     "connection":{
 	  "user": "postgres",
       "host": "<hostname>",
       "database": "<database>",
       "password": "<password>",
-      "port": 5432
+      "port": 5432,
+      "ssl": { rejectUnauthorized: false }
 	},
     "tables":{
         "user":{
@@ -321,6 +324,14 @@ Query enum
     GET http://[host]/api/db/enum/type_gender
 ``` 
 
+## Function
+Query Function,
+``` HTTP
+    GET http://[host]/api/func/[func name]?$params=<parameters>
+    GET http://[host]/api/func/f_table?$params=1&$params=999
+    SELECT * from f_table(1,999)
+``` 
+
 ## Configuration
 For security reason, sometimes you may want to disable the operation on specific table, like disable delete operation on user table. You can leverage following configuration to reslove this issue.  
 By default, the API will enable all operations(select,delete,insert,update) on all tables and views
@@ -340,6 +351,9 @@ const $config = {
     },
     "enum":{
         "type_gender":false //disable type_gender enum query, 
+    },
+    "functions":{
+        "f_check_error":false //disable f_check_error function query, 
     },
     "events":{
         onRequest:function () {

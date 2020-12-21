@@ -46,5 +46,44 @@ describe('Unit Test -- pg/pg-helper.js',function () {
                     }
                 ).catch($myUtil.errorBack("$selectById",done));
         });
+
+        it('getSchema', async ()=> {
+            const schema = await $pgHelper.getSchema();
+            schema.tables.user.should.be.a.object;
+            schema.tables.user.primary_key.should.have.length.same(1);
+            schema.composites.type_struct.should.be.a.object;
+            schema.enums.type_gender.columns.should.have.length.same(2);
+            schema.functions.f_check_email.should.be.a.object;
+            $expect(schema.functions.f_check_email.dataType).to.equal("boolean")
+        });
+
+        it('functions email', async ()=> {
+            const ans = await $pgHelper.func("f_check_email",["test@hotmail.com"]);
+            ans.should.have.length.above(0);
+            $expect(ans[0].f_check_email).to.equal(true)
+        });
+
+        it('functions exception', async ()=> {
+            try{
+               await $pgHelper.func("f_check_email1",["test@hotmail.com"])
+               throw new Error("expect throw no f_check_email1 exist error here")
+            }
+            catch (ex){
+                $expect(ex.message).to.equal("specific function f_check_email1 does not exist")
+            }
+        });
+
+        it('functions f_table', async ()=> {
+            const ans = await $pgHelper.func("f_table", [1,999]);
+            ans.should.have.length.above(0);
+            $expect(ans[0].account_id).to.equal(1)
+        });
+
+        // it('functions f_cursor', async ()=> {
+        //     let results = {};
+        //     const ans = await $pgHelper.func("f_cursor",[results,1]);
+        //     ans.should.have.length.above(0);
+        //     $expect(ans[0].account_id).to.equal(1)
+        // });
     });
 });

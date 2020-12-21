@@ -31,7 +31,50 @@ CREATE TABLE public.user(
     OIDS = FALSE
 );
 
+DROP FUNCTION IF EXISTS f_check_email();
+CREATE OR REPLACE FUNCTION f_check_email(email VARCHAR(200))
+    RETURNS BOOLEAN AS $$
+BEGIN
+    RETURN email ~ '^[^@\s]+@[^@\s]+(\.[^@\s]+)+$';
+END;
+$$ LANGUAGE plpgsql;
+
+DROP FUNCTION IF EXISTS f_check_error();
+CREATE OR REPLACE FUNCTION f_check_error(isSuccess BOOLEAN, error VARCHAR(20),hit VARCHAR(200))
+    RETURNS BOOLEAN AS $$
+BEGIN
+    IF NOT isSuccess THEN
+        RAISE EXCEPTION '%', error
+            USING HINT = hit;
+    END IF;
+    RETURN isSuccess;
+END;
+$$ LANGUAGE plpgsql;
+
+DROP FUNCTION IF EXISTS f_table(int,int);
+create or replace function f_table (
+    _user_id int,
+    _company_id int
+)
+    returns TABLE(
+                     account_id  INT,
+                     display_name VARCHAR(200)
+                 ) AS $$
+DECLARE
+    _user_interests int;
+begin
+    SELECT company_id into _user_interests from company where company_id = _company_id;
+    return query SELECT public.user.account_id,
+                        public.user.display_name
+                 from public.user where public.user.account_id = _user_id ;
+end
+$$ LANGUAGE plpgsql;
+
+
+
 CREATE VIEW v_test AS SELECT account_id,account, display_name, age FROM public.user;
+
+
 
 INSERT INTO public.user
 (account, display_name, age, price, password, meta,gender,roles,struct,is_active)
@@ -41,3 +84,4 @@ INSERT INTO public.user
       ,('account_3','account 3 display name', 30,300,'password','{"b":3,"c":"c3","d":{"d1":30,"d2":40,"d3":[2,5]}}','female','{1,3}',ROW('fuzz"y3', '{10,50}', 1.99),1::BIT)
       ,('account_4','account 4 display name', 40,400,'password','{"b":4,"c":"c4","d":{"d1":20,"d2":50,"d3":[3,5]}}','female','{1,2}',ROW('fuzzy4', '{40,50}', 1.99),0::BIT)
 ;
+

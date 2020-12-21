@@ -1,6 +1,6 @@
 {
   "name": "@linkfuture/pg-api",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "RESTful API for PostgreSQL",
   "main": "./lib/index.js",
   "scripts": {
@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/cyokin/pg-api#readme",
   "dependencies": {
-    "pg-promise": "5.x",
+    "pg-promise": "10.x",
     "express": "~4.14.0"
   },
   "devDependencies": {
