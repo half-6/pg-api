@@ -341,7 +341,9 @@ const $config = {
     "tables":{
         "user":{ 
             select:true,
-            delete:false,//disable delete operation on user table,
+            delete:false,//disable delete operation on user table
+            update:false, //disable update operation on user table
+            insert:false, //disable insert operation on user table
             max_limit:5000, //set default select max results, by default is 1000
             limit:12 //set default select limit, by default is 10
          }
