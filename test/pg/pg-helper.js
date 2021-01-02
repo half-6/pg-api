@@ -55,14 +55,28 @@ describe('Unit Test -- pg/pg-helper.js',function () {
             schema.tables.user.primary_key.should.have.length.same(1);
             schema.composites.type_struct.should.be.a.object;
             schema.enums.type_gender.columns.should.have.length.same(2);
-            schema.functions.f_check_email.should.be.a.object;
-            $expect(schema.functions.f_check_email.dataType).to.equal("boolean")
+            schema.functions.f_check_error.should.be.a.object;
+            $expect(schema.functions.f_check_error.dataType).to.equal("boolean")
+            $expect(schema.functions.f_check_error.arguments.issuccess).to.equal("boolean")
+            $expect(schema.functions.f_check_error.arguments.error).to.equal("character")
+
+            $expect(schema.functions.f_empty.dataType).to.equal("boolean")
+            $expect(schema.functions.f_empty.arguments.$param1).to.equal("boolean")
+            $expect(schema.functions.f_empty.arguments.$param2).to.equal("boolean")
         });
 
         it('functions email', async ()=> {
-            const ans = await $pgHelper.func("f_check_email",["test@hotmail.com"]);
+            let ans = await $pgHelper.func("f_check_email",["test@hotmail.com"]);
             ans.should.have.length.above(0);
             $expect(ans[0].f_check_email).to.equal(true)
+
+            ans = await $pgHelper.func("f_check_email",{email:"test@hotmail.com"});
+            ans.should.have.length.above(0);
+            $expect(ans[0].f_check_email).to.equal(true)
+
+            ans = await $pgHelper.func("f_table",{_company_id:2,_user_id:1});
+            ans.should.have.length.above(0);
+            $expect(ans[0].account_id).to.equal(1)
         });
 
         it('functions exception', async ()=> {

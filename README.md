@@ -325,10 +325,16 @@ Query enum
 ``` 
 
 ## Function
-Query Function,
+Query Function, you can pass params with specific arguments sequence or pass with object
 ``` HTTP
     GET http://[host]/api/func/[func name]?$params=<parameters>
     GET http://[host]/api/func/f_table?$params=1&$params=999
+    GET http://[host]/api/func/f_table?_user_id=1&_company_id=999
+    POST http://[host]/api/func/f_table
+    {
+         "_company_id":999
+        ,"_user_id":1
+   }
     SELECT * from f_table(1,999)
 ``` 
 

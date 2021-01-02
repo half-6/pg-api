@@ -70,6 +70,13 @@ begin
 end
 $$ LANGUAGE plpgsql;
 
+DROP FUNCTION IF EXISTS f_empty(bool,bool);
+CREATE OR REPLACE FUNCTION f_empty(bool,bool)
+    RETURNS BOOLEAN AS $$
+BEGIN
+    RETURN $1 & $2;
+END;
+$$ LANGUAGE plpgsql;
 
 
 CREATE VIEW v_test AS SELECT account_id,account, display_name, age FROM public.user;

@@ -25,7 +25,7 @@ describe('Unit Test -- api/pg-api.js(function)',function () {
                     done();
                 })
         });
-        it('select functions f_table', (done)=> {
+        it('get functions f_table', (done)=> {
             $chaiRequest
                 .get(`/api/db/func/f_table?$params=1&$params=999`)
                 .end(function (err,res) {
@@ -39,9 +39,38 @@ describe('Unit Test -- api/pg-api.js(function)',function () {
                     done();
                 })
         });
+        it('post functions f_table', (done)=> {
+            $chaiRequest
+                .post(`/api/db/func/f_table`)
+                .send({_company_id:999,_user_id:1})
+                .end(function (err,res) {
+                    (err == null).should.be.true;
+                    res.should.have.status(200);
+                    res.should.be.a.json;
+                    res.body.should.have.property('response');
+                    $logger.info(JSON.stringify(res.body) );
+                    $assert(res.body.response.length > 0)
+                    $assert(res.body.response[0].account_id===1)
+                    done();
+                })
+        });
+        it('select functions f_table argument', (done)=> {
+            $chaiRequest
+                .get(`/api/db/func/f_table?_company_id=2&_user_id=1`)
+                .end(function (err,res) {
+                    (err == null).should.be.true;
+                    res.should.have.status(200);
+                    res.should.be.a.json;
+                    res.body.should.have.property('response');
+                    $logger.info(JSON.stringify(res.body) );
+                    $assert(res.body.response.length > 0)
+                    $assert(res.body.response[0].account_id===1)
+                    done();
+                })
+        });
         it('select functions exception', (done)=> {
             $chaiRequest
-                .get(`/api/db/func/f_check_email1?$params=test@hotmail.com`)
+                .get(`/api/db/func/f_not_exist_func`)
                 .end(function (err,res) {
                     (err != null).should.be.true;
                     res.should.have.status(400);
@@ -49,7 +78,7 @@ describe('Unit Test -- api/pg-api.js(function)',function () {
                     $logger.info(JSON.stringify(res.body) );
                     res.body.should.have.property('response');
                     $assert(res.body.response === null)
-                    $assert(res.body.meta.message === "specific function f_check_email1 does not exist")
+                    $assert(res.body.meta.message === "specific function f_not_exist_func does not exist")
                     done();
                 })
         });
