@@ -334,8 +334,18 @@ Query Function, you can pass params with specific arguments sequence or pass wit
     {
          "_company_id":999
         ,"_user_id":1
-   }
+    }
+    //auto apply "_" on begin for better user experience 
+    POST http://[host]/api/func/f_table
+    {
+         "company_id":999
+        ,"user_id":1
+    }
     SELECT * from f_table(1,999)
+    CREATE FUNCTION f_table (
+        _user_id int,
+        _company_id int
+    )
 ``` 
 
 ## Configuration

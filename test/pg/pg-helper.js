@@ -77,6 +77,10 @@ describe('Unit Test -- pg/pg-helper.js',function () {
             ans = await $pgHelper.func("f_table",{_company_id:2,_user_id:1});
             ans.should.have.length.above(0);
             $expect(ans[0].account_id).to.equal(1)
+
+            ans = await $pgHelper.func("f_table",{company_id:2,user_id:1});
+            ans.should.have.length.above(0);
+            $expect(ans[0].account_id).to.equal(1)
         });
 
         it('functions exception', async ()=> {
