@@ -324,27 +324,34 @@ Query enum
     GET http://[host]/api/db/enum/type_gender
 ``` 
 
-## Function
+## Function (GET or POST)
 Query Function, you can pass params with specific arguments sequence or pass with object
 ``` HTTP
     GET http://[host]/api/func/[func name]?$params=<parameters>
     GET http://[host]/api/func/f_table?$params=1&$params=999
     GET http://[host]/api/func/f_table?_user_id=1&_company_id=999
+    //auto apply "_" on begin for better user experience 
+    GET http://[host]/api/func/f_table?user_id=1&company_id=999
+    //auto add default value on function when specific on the code
+    GET http://[host]/api/func/f_table?user_id=1
     POST http://[host]/api/func/f_table
     {
          "_company_id":999
         ,"_user_id":1
     }
-    //auto apply "_" on begin for better user experience 
     POST http://[host]/api/func/f_table
     {
          "company_id":999
         ,"user_id":1
     }
+    POST http://[host]/api/func/f_table
+    {
+        "user_id":1
+    }
     SELECT * from f_table(1,999)
     CREATE FUNCTION f_table (
         _user_id int,
-        _company_id int
+        _company_id int DEFAULT 1
     )
 ``` 
 

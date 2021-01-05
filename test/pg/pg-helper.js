@@ -57,12 +57,19 @@ describe('Unit Test -- pg/pg-helper.js',function () {
             schema.enums.type_gender.columns.should.have.length.same(2);
             schema.functions.f_check_error.should.be.a.object;
             $expect(schema.functions.f_check_error.dataType).to.equal("boolean")
-            $expect(schema.functions.f_check_error.arguments.issuccess).to.equal("boolean")
-            $expect(schema.functions.f_check_error.arguments.error).to.equal("character")
+            $expect(schema.functions.f_check_error.arguments.issuccess.type).to.equal("boolean")
+            $expect(schema.functions.f_check_error.arguments.issuccess.default).to.equal(undefined)
+            $expect(schema.functions.f_check_error.arguments.error.type).to.equal('character')
 
             $expect(schema.functions.f_empty.dataType).to.equal("boolean")
-            $expect(schema.functions.f_empty.arguments.$param1).to.equal("boolean")
-            $expect(schema.functions.f_empty.arguments.$param2).to.equal("boolean")
+            $expect(schema.functions.f_empty.arguments.$param1.type).to.equal("boolean")
+            $expect(schema.functions.f_empty.arguments.$param1.default).to.equal(undefined)
+            $expect(schema.functions.f_empty.arguments.$param2.type).to.equal("boolean")
+            $expect(schema.functions.f_empty.arguments.$param2.default).to.equal("true")
+
+            $expect(schema.functions.f_table.arguments._company_id.type).to.equal("integer")
+            $expect(schema.functions.f_table.arguments._company_id.default).to.equal("1")
+
         });
 
         it('functions email', async ()=> {

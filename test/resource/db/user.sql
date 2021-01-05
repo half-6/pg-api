@@ -54,7 +54,7 @@ $$ LANGUAGE plpgsql;
 DROP FUNCTION IF EXISTS f_table(int,int);
 create or replace function f_table (
     _user_id int,
-    _company_id int
+    _company_id int DEFAULT 1
 )
     returns TABLE(
                      account_id  INT,
@@ -71,7 +71,7 @@ end
 $$ LANGUAGE plpgsql;
 
 DROP FUNCTION IF EXISTS f_empty(bool,bool);
-CREATE OR REPLACE FUNCTION f_empty(bool,bool)
+CREATE OR REPLACE FUNCTION f_empty(bool,bool default true)
     RETURNS BOOLEAN AS $$
 BEGIN
     RETURN $1 & $2;
