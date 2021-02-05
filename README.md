@@ -381,10 +381,10 @@ const $config = {
         "f_check_error":false //disable f_check_error function query, 
     },
     "events":{
-        onRequest:function () {
+        async onRequest:function () {
             $logger.info("onRequest =>",JSON.stringify(arguments));
         },
-        on_select_city_request:function () {
+        async on_select_city_request:function () {
             $logger.info("on_select_city_request =>",JSON.stringify(arguments));
         },
     }
@@ -413,43 +413,43 @@ Request => Build => Query => Complete
 
 ``` js
         "events":{
-            onRequest:function () {
+            async onRequest:function () {
                 $logger.info("onRequest =>",JSON.stringify(arguments));
             },
-            on_city_request:function () {
+            async on_city_request:function () {
                 $logger.info("on_city_request =>",JSON.stringify(arguments));
             },
-            on_select_city_request:function () {
+            async on_select_city_request:function () {
                 $logger.info("on_select_city_request =>",JSON.stringify(arguments));
             },
-            onBuild:function () {
+            async onBuild:function () {
                 $logger.info("onBuild =>",JSON.stringify(arguments));
             },
-            on_city_build:function () {
+            async on_city_build:function () {
                 $logger.info("on_city_build =>",JSON.stringify(arguments));
             },
-            on_select_city_build:function () {
+            async on_select_city_build:function () {
                 $logger.info("on_select_city_build =>",JSON.stringify(arguments));
             },
-            onQuery:function () {
+            async onQuery:function () {
                 $logger.info("onQuery =>",JSON.stringify(arguments));
             },
-            on_city_query:function () {
+            async on_city_query:function () {
                 $logger.info("on_city_query =>",JSON.stringify(arguments));
             },            
-            on_select_city_query:function () {
+            async on_select_city_query:function () {
                 $logger.info("on_select_city_query =>",JSON.stringify(arguments));
             },
-            onComplete:function () {
+            async onComplete:function () {
                 $logger.info("onComplete =>",JSON.stringify(arguments));
             },
-            on_city_complete:function () {
+            async on_city_complete:function () {
                 $logger.info("on_select_city_complete =>",JSON.stringify(arguments));
             },            
-            on_select_city_complete:function () {
+            async on_select_city_complete:function () {
                 $logger.info("on_select_city_complete =>",JSON.stringify(arguments));
             },
-            on_delete_city_complete:function () {
+            async on_delete_city_complete:function () {
                 $logger.info("on_delete_city_complete =>",JSON.stringify(arguments));
             },
         },
